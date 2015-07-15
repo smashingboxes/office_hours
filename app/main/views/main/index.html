@@ -1,0 +1,49 @@
+<:Title>
+  Home
+
+<:Body>
+  <h1>Home</h1>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Appointments</div>
+        <div class="panel-body">
+          <form class="form-inline center" e-submit="send_appointment">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Enter a Specialty" value="{{ page._form._specialty }}">
+              <input type="text" class="form-control" placeholder="Enter a Start Time" value="{{ page._form._start_time }}">
+              <input type="text" class="form-control" placeholder="Enter an End Time" value="{{ page._form._end_time }}">
+            </div>
+            <input type="submit" class="btn btn-default"/>
+          </form>
+          <div>
+            <table>
+              <tr>
+                <th>Host</th>
+                <th>Specialty</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Attendee</th>
+              </tr>
+            {{ store._appointments.order(start_time: 1).each do |appointment| }}
+              <tr>
+                <td>
+                  <strong>{{ appointment.user.then(&:_name) }}</strong>
+                </td>
+                <td>
+                <span>{{ appointment._specialty }}</span>
+                </td>
+                <td>
+                <span>{{ appointment._start_time }}</span>
+                </td>
+                <td>
+                <span>{{ appointment._end_time }}</span>
+                </td>
+                <td>
+                  <form class="form-inline center" e-submit="update_attendee">
+                  <input type="text" class="form-control" placeholder="Enter an Attendee" value="{{ appointment._attendee }}">
+                </td>
+              </tr>
+            {{ end }}
+
