@@ -1,7 +1,6 @@
 # By default Volt generates this controller for your Main component
 module Main
   class MainController < Volt::ModelController
-    before_action :require_login, only: :index
     def index
       reset_appointment
     end
