@@ -11,6 +11,16 @@ Volt.configure do |config|
   config.app_name = 'Office_hours'
   config.mailer.from = 'Office_hours <no-reply@office-hours.com>'
 
+  config.db_driver = 'mongo'
+  config.db_name = (config.app_name + '_' + Volt.env.to_s)
+
+  if ENV['MONGOLAB_URI'].present?
+    config.db_uri = ENV['MONGOLAB_URI'] # you will have to set this on heroku
+  else
+    config.db_host = 'localhost'
+    config.db_port = 27017
+  end
+
   ############
   # App Secret
   ############
