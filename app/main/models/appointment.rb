@@ -5,6 +5,8 @@ class Appointment < Volt::Model
   field :start_time, String
   field :end_time, String
 
+  permissions(:delete) { deny unless owner? }
+
   def useful_start_time
     start_time.gsub(":", "").to_i
   end

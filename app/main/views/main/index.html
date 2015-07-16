@@ -41,14 +41,21 @@
                 <span>{{ appointment._specialty }}</span>
                 </td>
                 <td>
-                <span>{{ appointment._start_time }}</span>
+                <span>{{ appointment.start_time }}</span>
                 </td>
                 <td>
-                <span>{{ appointment._end_time }}</span>
+                <span>{{ appointment.end_time }}</span>
                 </td>
                 <td>
                   <form class="form-inline center" e-submit="update_attendee">
                   <input type="text" class="form-control" placeholder="Enter an Attendee" value="{{ appointment._attendee }}">
+                </td>
+                <td>
+                  {{ if appointment.can_delete? }}
+                    <span class="pull-right">
+                      <button e-click="appointment.destroy" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></button>
+                    </span>
+                  {{ end }}
                 </td>
               </tr>
             {{ end }}
