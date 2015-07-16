@@ -5,10 +5,6 @@ module Main
       reset_appointment
     end
 
-    def about
-      # Add code for when the about view is loaded
-    end
-
     private
 
     def send_appointment
